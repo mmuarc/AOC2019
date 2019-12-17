@@ -32,27 +32,19 @@ noun = 0
 verb = 0
 with open("input.txt", "r") as f:
     originalInput = f.readline()
-    while True:
-        machine.initMemory(originalInput)
-        machine.writeToMemory(1,noun)
-        machine.writeToMemory(2,verb)
-        test2Result = machine.run()
-        if (test2Result[0] != 19690720):
-            if noun < 100:
-                noun = noun+1
-            elif verb < 100:
-                noun = 0
-                verb = verb + 1
-            else:
-                print ("Not found")
+    for noun in range(100):
+        for verb in range(100):
+            machine.initMemory(originalInput)
+            machine.writeToMemory(1,noun)
+            machine.writeToMemory(2,verb)
+            test2Result = machine.run()
+            if (test2Result[0] == 19690720):
+                print ("Noun:",noun)
+                print ("Verb:",verb)
+                print(f"solution: {100 * noun + verb} ")
                 break
-        else:
-            print ("Noun:",noun)
-            print ("Verb:",verb)
-            break
 
-    print(f"solution: {100 * noun + verb} ")
-
+    
 # 25 - 5  :  2505
 
 
